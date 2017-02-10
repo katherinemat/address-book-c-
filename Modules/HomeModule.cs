@@ -9,7 +9,15 @@ namespace AddressBook
     public HomeModule()
     {
       Get["/"] = _ => {
-        return View["index.cshtml"];
+        var allContacts = Contact.GetAll();
+        return View["index.cshtml", allContacts];
+      };
+      Get["/contact/form"] = _ => {
+        return View["form.cshtml"];
+      };
+      Post["/contact/new"] = _ => {
+        Contact newContact = new Contact(Request.Form["new-name"], Request.Form["new-phone"], Request.Form["new-address"]);
+        return View["new_contact.cshtml", newContact];
       };
     }
   }
