@@ -8,9 +8,15 @@ namespace AddressBook
   {
     public HomeModule()
     {
-      Get["/"] = _ =>{
+      Get["/"] = _ => {
         List<Contact> allContacts = Contact.GetAll();
         return View["index.cshtml", allContacts];
+      };
+      Post["/contact/{id}/cleared"] = parameters => {
+        Contact deletedContact = Contact.Find(parameters.id);
+        deletedContact.Delete();
+        Contact.SetIds();
+        return View["contact_cleared.cshtml"];
       };
       Get["/contact/form"] = _ => {
         return View["form.cshtml"];

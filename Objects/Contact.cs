@@ -16,7 +16,7 @@ namespace AddressBook.Objects
       _phone = phone;
       _address = address;
       _instances.Add(this);
-      _id = _instances.Count;
+      _id = _instances.IndexOf(this);
     }
 
     public string GetName()
@@ -31,9 +31,27 @@ namespace AddressBook.Objects
     {
       return _address;
     }
+
     public int GetId()
     {
       return _id;
+    }
+    public void SetId(int newId)
+    {
+      _id = newId;
+    }
+
+    public void Delete()
+    {
+      _instances.Remove(this);
+    }
+
+    public static void SetIds()
+    {
+      foreach(Contact contact in _instances)
+      {
+        contact.SetId(_instances.IndexOf(contact));
+      }
     }
 
     public static List<Contact> GetAll()
@@ -46,7 +64,7 @@ namespace AddressBook.Objects
     }
     public static Contact Find(int searchId)
     {
-      return _instances[searchId - 1];
+      return _instances[searchId];
     }
   }
 }
