@@ -8,8 +8,8 @@ namespace AddressBook
   {
     public HomeModule()
     {
-      Get["/"] = _ => {
-        var allContacts = Contact.GetAll();
+      Get["/"] = _ =>{
+        List<Contact> allContacts = Contact.GetAll();
         return View["index.cshtml", allContacts];
       };
       Get["/contact/form"] = _ => {
@@ -18,6 +18,10 @@ namespace AddressBook
       Post["/contact/new"] = _ => {
         Contact newContact = new Contact(Request.Form["new-name"], Request.Form["new-phone"], Request.Form["new-address"]);
         return View["new_contact.cshtml", newContact];
+      };
+      Get["/contact/{id}"] = parameters => {
+        Contact selectedContact = Contact.Find(parameters.id);
+        return View["contact.cshtml", selectedContact];
       };
     }
   }
