@@ -1,0 +1,16 @@
+body {
+  background-image: url("../img/background.jpg");
+  background-postion: center;
+  background-attachment: fixed;
+  font-family: 'Lateef', sans-serif;
+  letter-spacing: 2px;
+}
+h1, h3, h4, p {
+  font-size: 60px;
+}
+
+
+a:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
