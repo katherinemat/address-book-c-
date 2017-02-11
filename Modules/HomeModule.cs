@@ -19,6 +19,11 @@ namespace AddressBook
         Contact newContact = new Contact(Request.Form["new-name"]);
         return View["new_contact_form.cshtml", newContact];
       };
+      Post["/"] = _ => {
+        Phone newPhone = new Phone(Request.Form["new-phone"]);
+        List<Contact> allContacts = Contact.GetAll();
+        return View["index.cshtml", allContacts];
+      };
     }
   }
 }
