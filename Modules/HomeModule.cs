@@ -12,26 +12,12 @@ namespace AddressBook
         List<Contact> allContacts = Contact.GetAll();
         return View["index.cshtml", allContacts];
       };
-      Post["/contact/{id}/cleared"] = parameters => {
-        Contact deletedContact = Contact.Find(parameters.id);
-        deletedContact.Delete();
-        Contact.SetIds();
-        return View["contact_cleared.cshtml"];
-      };
       Get["/contact/form"] = _ => {
         return View["form.cshtml"];
       };
-      Post["/contact/new"] = _ => {
-        Contact newContact = new Contact(Request.Form["new-name"], Request.Form["new-phone"], Request.Form["new-address"]);
-        return View["new_contact.cshtml", newContact];
-      };
-      Get["/contact/{id}"] = parameters => {
-        Contact selectedContact = Contact.Find(parameters.id);
-        return View["contact.cshtml", selectedContact];
-      };
-      Post["/cleared"] = _ => {
-        Contact.ClearAll();
-        return View["contacts_cleared.cshtml"];
+      Post["/contact/new/form"] = _ => {
+        Contact newContact = new Contact(Request.Form["new-name"]);
+        return View["new_contact_form.cshtml", newContact];
       };
     }
   }

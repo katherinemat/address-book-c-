@@ -7,10 +7,6 @@
   @foreach (var contact in Model)
   {
     <h3><a href="/contact/@contact.GetId()">@contact.GetName()</a></h3>
-    <ul>
-      <li>@contact.GetPhone()</li>
-      <li>@contact.GetAddress()</li>
-    </ul>
   }
   <form action="/cleared" method="post">
     <button type="submit" class="btn" name="button">Clear all contacts</button>

@@ -4,38 +4,37 @@ namespace AddressBook.Objects
 {
   public class Contact
   {
-    private string _name;
-    private string _phone;
-    private string _address;
-    private int _id;
     private static List<Contact> _instances = new List<Contact> {};
+    private string _name;
+    private int _id;
+    private List<Phone> _phones;
 
-    public Contact(string name, string phone, string address)
+    public Contact(string name)
     {
       _name = name;
-      _phone = phone;
-      _address = address;
       _instances.Add(this);
       _id = _instances.IndexOf(this);
+      _phones = new List<Phone>{};
     }
 
     public string GetName()
     {
       return _name;
     }
-    public string GetPhone()
-    {
-      return _phone;
-    }
-    public string GetAddress()
-    {
-      return _address;
-    }
-
     public int GetId()
     {
       return _id;
     }
+
+    public List<Phone> GetPhones()
+    {
+      return _phones;
+    }
+    public void AddPhone(Phone phone)
+    {
+      _phones.Add(phone);
+    }
+
     public void SetId(int newId)
     {
       _id = newId;

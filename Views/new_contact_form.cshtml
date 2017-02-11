@@ -1,0 +1,13 @@
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+<h3>Add some information for @Model.GetName():</h3>
+<form action='/contact/@Model.GetId()' method='post'>
+  <input id='contact-id' name='contact-id' type='hidden' value='@Model.GetId()'>
+  <label for='new-phone'>Phone: </label>
+  <input id='new-phone' name='new-phone' type='text'>
+  <button type='submit' class='btn'>Add phone</button>
+</form>
+
+<p><a href="/">Go to home page to see all your contacts</a></p>
